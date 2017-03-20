@@ -1,0 +1,26 @@
+<%if @article.errors.any?%>
+  <p><%=pluralize(@article.errors.count, "error")%></p>
+  <%@article.errors.full_messages.each do |msg|%>
+    <p><%= msg%></p>
+  <%end%>
+<%end%>
+
+<%= form_for(@article) do |f|%>
+  <table>
+    <tr>
+      <td><%= f.label :name%></td>
+      <td><%= f.text_field :name%></td>
+    </tr>
+    <tr>
+      <td><%= f.label :description%></td>
+      <td><%= f.text_area :description%></td>
+    </tr>
+    <tr>
+      <td><%= f.label :content%></td>
+      <td><%= f.text_area :content%></td>
+    </tr>
+  </table>
+  <p>
+    <%= f.submit%>
+  </p>
+<%end%>
