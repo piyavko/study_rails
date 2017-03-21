@@ -50,4 +50,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #my add gem
 gem 'devise'
-gem 'bcrypt', platforms: :ruby
+gem "twitter-bootstrap-rails"
+gem 'will_paginate', '~> 3.1.0'
