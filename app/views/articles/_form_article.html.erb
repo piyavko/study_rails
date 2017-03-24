@@ -1,26 +1,41 @@
 <%if @article.errors.any?%>
-  <p><%=pluralize(@article.errors.count, "error")%></p>
-  <%@article.errors.full_messages.each do |msg|%>
-    <p><%= msg%></p>
-  <%end%>
+  <div class="panel panel-danger">
+    <div class="panel-heading text-center">
+      <%=pluralize(@article.errors.count, "error")%>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <%@article.errors.full_messages.each do |msg|%>
+          <li><%= msg%></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
 <%end%>
 
-<%= form_for(@article) do |f|%>
-  <table>
-    <tr>
-      <td><%= f.label :name%></td>
-      <td><%= f.text_field :name%></td>
-    </tr>
-    <tr>
-      <td><%= f.label :description%></td>
-      <td><%= f.text_area :description%></td>
-    </tr>
-    <tr>
-      <td><%= f.label :content%></td>
-      <td><%= f.text_area :content%></td>
-    </tr>
-  </table>
-  <p>
-    <%= f.submit%>
-  </p>
+<%= form_for(@article, html:{class: "form-horizontal"}) do |f|%>
+  <div class="form-group">
+    <%= f.label :name, class: "col-xs-2 col-sm-2 col-md-1 col-lg-1 control-label"%>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <%= f.text_field :name, class: "form-control"%>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, class: "col-xs-2 col-sm-2 col-md-1 col-lg-1 control-label"%>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <%= f.text_area :description, class: "form-control", rows:"3"%>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :content, class: "col-xs-2 col-sm-2 col-md-1 col-lg-1 control-label"%>
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+      <%= f.text_area :content, class: "form-control", rows:"20"%>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-offset-5 col-sm-offset-5 col-md-offset-5 col-lg-offset-5">
+      <%= f.submit class: "btn btn-primary"%>
+      <%= link_to "Back", articles_path, class: "btn btn-info"%>
+    </div>
+  </div>
 <%end%>

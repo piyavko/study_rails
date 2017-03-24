@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+body{
+  padding-top: 60px;
+}
+
+#articles{
+  border: 3px solid #999;
+  background-color: #EEE;
+  text-align: center;
+}
+
+/*For Devise*/
+#error_explanation{
+  border: 1px solid #e6d2d2;
+}
+
+#error_explanation h2{
+  margin-top: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  border: 1px solid #e6d2d2;
+  background: #f2dede; /*@state-danger-bg @panel-danger-heading-bg;*/
+  color: #a94442;/*@state-danger-text*/
+  text-align: center;
+}

@@ -9,16 +9,37 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      Hello, <strong><%= current_user.email%></strong>
-      <%= link_to 'Edit profile', edit_user_registration_path %> | 
-      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-    <% else %>
-      <%= link_to 'Sign_in', new_user_session_path %> | 
-      <%= link_to 'Sign up', new_user_registration_path %>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="row">
+          <div class=" col-xs-3 col-sm-4 col-md-4 col-lg-4">
+            <div class="navbar-header">
+              <%= link_to 'Articles', root_path, class: 'navbar-brand'%>
+            </div>
+          </div>
+          <div class="col-xs-9 col-sm-8 col-md-8 col-lg-8">
+            <div class="navbar-right navbar-text">
+              <strong>
+                <% if user_signed_in? %>
+                  Hello, <em><%= current_user.email%></em>
+                  <%= link_to 'Edit profile', edit_user_registration_path %> | 
+                  <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+                <% else %>
+                  <%= link_to 'Sign_in', new_user_session_path %> |
+                  <%= link_to 'Sign up', new_user_registration_path %>
+                <% end %>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <p class="alert-success text-center"><%= notice %></p>
+        <p class="alert-danger text-center"><%= alert %></p>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

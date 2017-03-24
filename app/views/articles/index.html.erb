@@ -1,14 +1,13 @@
-<h1>My Articles</h1>
+<h1 id="articles">Articles</h1>
 <%@articles.each do |article|%>
-  <div class="container">
-    <h2><%= article.name%></h2>
-    <p><%= article.description%></p>
-    <div>
-      <%= link_to "Show", article_path(article)%> |
-      <%= link_to "Edit", edit_article_path(article)%> |
-      <%= link_to "Destroy", article_path(article), method: :delete, data:{confirm: "Are you sure?"}%>
-    </div>
+  <h2><%= article.name%></h2>
+  <p><%= article.description%></p>
+  <div>
+    <%= link_to "Show", article_path(article)%> |
+    <%= link_to "Edit", edit_article_path(article)%> |
+    <%= link_to "Destroy", article_path(article), method: :delete, data:{confirm: "Are you sure?"}, class: "text-danger"%>
   </div>
 <%end%>
-<%= will_paginate @articles%>
-<p><%= link_to "New article", new_article_path%></p>
+<%= will_paginate @articles, class: 'text-center'%>
+<p><%= link_to "New article", new_article_path, class: "btn btn-primary"%></p>
+
