@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.paginate(page: params[:page]).per_page(5)
+    @articles_count = Article.all.size;
   end
   
   def new
@@ -11,13 +12,18 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    @comments = @article.comments.paginate(page: params[:page]).per_page(10)
+    @comments_count = @article.comments.size
   end
   
   def edit
+    if current_user != @article.user
+      redirect_to @article
+    end
   end
   
   def create
-    @article = Article.new(articles_param)
+    @article = current_user.articles.build(article_params)
     if @article.save
       flash[:notice] = "Article create"
       redirect_to articles_path
@@ -28,7 +34,7 @@ class ArticlesController < ApplicationController
   end
   
   def update
-    if @article.update(articles_param)
+    if @article.update(article_params)
       flash[:notice] = "Article update"
       redirect_to articles_path
     else
@@ -38,12 +44,16 @@ class ArticlesController < ApplicationController
   end
   
   def destroy
-    @article.destroy
-    redirect_to articles_path
+    if current_user == @article.user
+      @article.destroy
+      redirect_to articles_path
+    else
+      redirect_to @article
+    end
   end
   
   private
-  def articles_param
+  def article_params
     params.require(:article).permit(:name, :description, :content);
   end
   

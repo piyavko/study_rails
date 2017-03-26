@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Users (<%=@users_count%>):</h4>
+  </div>
+  <div class="panel-body">
+    <%if !@users.empty?%>
+      <table class="table">
+        <% @users.each do |user|%>
+          <tr>
+            <th><%=link_to "#{user.email}", user_path(user)%></th>
+            <td>articles:<%= user.articles.size%></td>
+            <td>comments:<%= user.comments.size%></td>
+          </tr>
+          <%end%>
+      </table>
+    <%end%>
+  </div>
+</div>
+
+<%= will_paginate @users, class: 'text-center'%>
+<p><%= link_to "Back", root_path, class: "btn btn-info"%></p>

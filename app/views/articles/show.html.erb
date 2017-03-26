@@ -1,5 +1,12 @@
-<h2><%= @article.name%></h2>
-<p><%= @article.content%></p>
-<%= link_to 'Back', articles_path%> |
-<%= link_to 'Edit', edit_article_path(@article)%> |
-<%= link_to 'Delete', article_path(@article), method: :delete, data:{confirm: "Are you sure?"}, class: "text-danger"%>
+<div class="page-header">
+  <h2><%= @article.name%><br />
+    <span class="small">Author: <%= @article.user.email%>; created: <%= @article.created_at%></span>
+    <button class="small align-right btn btn-link" data-toggle="collapse" data-target="#hideArticle">(Hide article)</button>
+  </h2>
+</div>
+<p id="hideArticle" class="collapse in"><%= @article.content%></p>
+<%= link_to "Back", articles_path%> |
+<%= link_to "Edit", edit_article_path(@article)%> |
+<%= link_to "Delete", article_path(@article), method: :delete, data:{confirm: "Are you sure?"}, class: "text-danger"%>
+
+<%= render "form_comment"%>

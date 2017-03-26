@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-xs-offset-3 col-xs-6 col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+    <%= form_for([@article, @article.comments.build]) do |f|%>
+      <div class="form-group">
+        <%= f.label :comment%>
+        <%= f.text_area :comment, class: "form-control", rows:"5"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Add comment", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Comments (<%= @comments_count%>):
+  </div>
+  <div class="panel-body">
+    <%if !@comments.empty?%>
+      <table class="table">
+        <% @comments.each do |comment|%>
+          <%if !comment.user.nil? %>
+            <tr>
+              <td>
+                <span class="text-info"><%= comment.user.email%>; created<%= comment.created_at%></span><br />
+                <%= comment.comment%>
+              </td>
+            </tr>
+          <%end%>
+        <%end%>
+      </table>
+    <%end%>
+  </div>
+</div>
+
+<%= will_paginate @comments, class: 'text-center'%>

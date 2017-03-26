@@ -15,12 +15,7 @@
  */
 body{
   padding-top: 60px;
-}
-
-#articles{
-  border: 3px solid #999;
-  background-color: #EEE;
-  text-align: center;
+  padding-bottom: 40px;
 }
 
 /*For Devise*/
