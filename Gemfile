@@ -52,3 +52,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'will_paginate', '~> 3.1.0'
+gem "cancan"

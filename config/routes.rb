@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'users', to: 'users_stat#index'
   get '/users/:id', to: 'users_stat#show', as: 'user'
+  match '/users/:id', to: 'users_stat#destroy', as: 'user_delete', via: :delete
 
   root 'articles#index'
 end

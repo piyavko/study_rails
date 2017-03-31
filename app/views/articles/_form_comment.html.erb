@@ -24,8 +24,11 @@
           <%if !comment.user.nil? %>
             <tr>
               <td>
-                <span class="text-info"><%= comment.user.email%>; created<%= comment.created_at%></span><br />
+                <span class="text-info"><%= comment.user.username%>(<%= comment.user.email%>); created<%= comment.created_at%></span><br />
                 <%= comment.comment%>
+                <% if can? :destroy, comment %>
+                  <br /><%= link_to "Delete", article_comment_path(comment.article, comment), method: :delete, data: {confirm: "Are you sure?"}, class: "text-danger"%>
+                <% end %>
               </td>
             </tr>
           <%end%>

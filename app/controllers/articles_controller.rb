@@ -8,18 +8,18 @@ class ArticlesController < ApplicationController
   end
   
   def new
+    authorize! :create, Article
     @article = Article.new
   end
   
   def show
     @comments = @article.comments.paginate(page: params[:page]).per_page(10)
     @comments_count = @article.comments.size
+    authorize! :read, @article
   end
   
   def edit
-    if current_user != @article.user
-      redirect_to @article
-    end
+    authorize! :update, @article
   end
   
   def create
@@ -44,12 +44,9 @@ class ArticlesController < ApplicationController
   end
   
   def destroy
-    if current_user == @article.user
-      @article.destroy
-      redirect_to articles_path
-    else
-      redirect_to @article
-    end
+    authorize! :destroy, @article
+    @article.destroy
+    redirect_to articles_path
   end
   
   private

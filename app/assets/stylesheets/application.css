@@ -15,7 +15,20 @@
  */
 body{
   padding-top: 60px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
+}
+
+h1{
+  font-size: 20px;
+}
+
+h2{
+  font-size: 18px;
+}
+
+div .panel-heading{
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 /*For Devise*/
