@@ -53,3 +53,7 @@ gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'will_paginate', '~> 3.1.0'
 gem "cancan"
+
+# For Test
+gem 'rspec-rails'
+gem 'capybara'
