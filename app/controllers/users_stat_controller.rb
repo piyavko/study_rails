@@ -1,13 +1,13 @@
 class UsersStatController < ApplicationController
   def index
     @users = User.paginate(page: params[:page]).per_page(10)
-    @users_count = User.all.size
+    @users_count = User.all.count
   end
   
   def show
     @user = User.find(params[:id])
     @articles = @user.articles.paginate(page: params[:page]).per_page(10)
-    @articles_count = @articles.size
+    @articles_count = @articles.count
   end
   
   def destroy

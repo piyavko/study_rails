@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.paginate(page: params[:page]).per_page(5)
-    @articles_count = Article.all.size;
+    @articles_count = Article.all.count;
   end
   
   def new
@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   
   def show
     @comments = @article.comments.paginate(page: params[:page]).per_page(10)
-    @comments_count = @article.comments.size
+    @comments_count = @article.comments.count
     authorize! :read, @article
   end
   
