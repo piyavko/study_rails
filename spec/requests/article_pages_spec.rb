@@ -88,7 +88,7 @@ describe "Article pages" do
         before{visit edit_article_path(article)}
         it{should have_selector("h1", text:"Sign in")}
       end
-      describe "submitting to the update action" do
+      describe "Submitting to the update action" do
         before{patch article_path(article)}
         it{expect(response).to redirect_to(new_user_session_path)}
       end

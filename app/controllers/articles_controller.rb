@@ -24,6 +24,7 @@ class ArticlesController < ApplicationController
   
   def create
     @article = current_user.articles.build(article_params)
+    authorize! :create, Article
     if @article.save
       flash[:notice] = "Article create"
       redirect_to articles_path
@@ -34,6 +35,7 @@ class ArticlesController < ApplicationController
   end
   
   def update
+    authorize! :update, @article
     if @article.update(article_params)
       flash[:notice] = "Article update"
       redirect_to articles_path
@@ -46,6 +48,7 @@ class ArticlesController < ApplicationController
   def destroy
     authorize! :destroy, @article
     @article.destroy
+    flash[:notice] = "Article delete"
     redirect_to articles_path
   end
   
